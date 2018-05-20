@@ -3,7 +3,7 @@
 %define debug_package	%{nil}
 %define gitdate %{nil}
 Name:		qbittorrent
-Version:	3.3.7
+Version:	4.0.4
 Summary:	A lightweight but featureful BitTorrent client
 Group:		Networking/File transfer
 License:	GPLv2+
@@ -12,14 +12,24 @@ Url:		http://qbittorrent.sourceforge.net/
 Source0:	qbittorrent-%{gitdate}.tar.gz
 Release:	0.%{gitdate}.1
 %else
-Source0:	http://downloads.sourceforge.net/project/qbittorrent/qbittorrent/qbittorrent-%{version}/qbittorrent-%{version}.tar.xz
-Release:	2
+Source0:	http://downloads.sourceforge.net/project/qbittorrent/qbittorrent/qbittorrent-%{version}/qbittorrent-%{version}.tar.gz
+Release:	1
 %endif
-BuildRequires:	qt5-devel
-BuildRequires:	qt5-linguist-tools
-BuildRequires:	qtchooser
 BuildRequires:	boost-devel
+BuildRequires:	qmake5
+BuildRequires:	qt5-linguist-tools
 BuildRequires:	pkgconfig(libtorrent-rasterbar)
+BuildRequires:	pkgconfig(Qt5Concurrent)
+BuildRequires:	pkgconfig(Qt5Core)
+BuildRequires:	pkgconfig(Qt5DBus)
+BuildRequires:	pkgconfig(Qt5Gui)
+BuildRequires:	pkgconfig(Qt5Svg)
+BuildRequires:	pkgconfig(Qt5Network)
+BuildRequires:	pkgconfig(Qt5Widgets)
+BuildRequires:	pkgconfig(Qt5Xml)
+BuildRequires:	pkgconfig(gl)
+BuildRequires:	pkgconfig(zlib)
+#BuildRequires:	qtchooser
 Requires:	python
 Requires:	geoip
 
@@ -90,10 +100,12 @@ popd
 %files
 %doc AUTHORS Changelog COPYING NEWS TODO
 %{_bindir}/%{name}
-%{_datadir}/applications/qBittorrent.desktop
+%{_datadir}/applications/%{name}.desktop
+%{_iconsdir}/hicolor/*/status/%{name}-tray.png
+%{_iconsdir}/hicolor/*/status/%{name}-tray*.svg
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/pixmaps/qbittorrent.png
-%{_datadir}/appdata/qBittorrent.appdata.xml
+%{_datadir}/appdata/%{name}.appdata.xml
 %{_mandir}/man1/%{name}.1*
 
 %if %{with nox}
