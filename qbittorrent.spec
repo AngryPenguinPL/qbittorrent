@@ -55,6 +55,8 @@ control the clinet remotely.
 %apply_patches
 
 %build
+export CC=gcc
+export CXX=g++
 %setup_compile_flags
 
 sed -i -e 's,@QBT_CONF_EXTRA_CFLAGS@,@QBT_CONF_EXTRA_CFLAGS@ -std=gnu++1y,' conf.pri.in
